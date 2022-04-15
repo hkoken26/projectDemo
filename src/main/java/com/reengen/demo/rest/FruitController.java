@@ -28,10 +28,6 @@ public class FruitController {
 		this.fruitService = fruitService;
 	}
 
-	@GetMapping
-	public ResponseEntity<List<FruitDTO>> getAllFruits() {
-		return ResponseEntity.ok(fruitService.findAll());
-	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<FruitDTO> getFruit(@PathVariable final Long id) {
@@ -43,6 +39,20 @@ public class FruitController {
 		return new ResponseEntity<>(fruitService.create(fruitDTO), HttpStatus.CREATED);
 	}
 
+	
+
+	@PutMapping("/{id}")
+	public ResponseEntity<Void> updateFruit(@PathVariable final Long id, @RequestBody @Valid final FruitDTO fruitDTO) {
+		fruitService.update(id, fruitDTO);
+		return ResponseEntity.ok().build();
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteFruit(@PathVariable final Long id) {
+		fruitService.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
 	@PostMapping("/insertRecords")
 	public Boolean insertRecords(@RequestBody @Valid final List<FruitDTO> values) {
 
@@ -69,17 +79,11 @@ public class FruitController {
 
 		return true;
 	}
-
-	@PutMapping("/{id}")
-	public ResponseEntity<Void> updateFruit(@PathVariable final Long id, @RequestBody @Valid final FruitDTO fruitDTO) {
-		fruitService.update(id, fruitDTO);
-		return ResponseEntity.ok().build();
-	}
-
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteFruit(@PathVariable final Long id) {
-		fruitService.delete(id);
-		return ResponseEntity.noContent().build();
+	
+	
+	@GetMapping
+	public List<FruitDTO> getAllRecords () {
+		return fruitService.findAll(); 
 	}
 
 	@PostMapping("/filterRecords")

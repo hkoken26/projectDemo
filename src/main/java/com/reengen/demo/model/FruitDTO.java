@@ -11,6 +11,18 @@ public class FruitDTO {
     private String name;
 
     private Integer quantity;
+    
+    public FruitDTO() {  	
+    	
+    	
+	}
+    
+    public FruitDTO(String name,Integer quantity ) {
+    	
+    	this.name=name;
+    	this.quantity=quantity; 
+    	
+	}
 
     public Long getId() {
         return id;

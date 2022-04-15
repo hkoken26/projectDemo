@@ -30,7 +30,7 @@ class DemoTest {
 	FruitService fruitService;
 	
 	@InjectMocks
-	FruitController fruitController ; 
+	FruitController fruitController;  
 	
 	@Test
 	void test_InsertRecords_Quantity_Control_AutofRange_witGreaterThan999() {
@@ -76,7 +76,7 @@ class DemoTest {
 		
 		List<FruitDTO> list = getList(); 	 	
 		
-		when(fruitService.findAll()).thenReturn(list); 
+		when(fruitService.findAll()).thenReturn(list);  
 		
 		assertEquals(list.size(), fruitController.getAllRecords().size()); 
 		assertEquals(list.get(0).getName(), fruitController.getAllRecords().get(0).getName());
